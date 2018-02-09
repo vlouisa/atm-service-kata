@@ -3,29 +3,37 @@ package nl.louisa.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import static nl.louisa.service.Denomination.*;
+
 public class ATMService {
-    private Map<Money, Integer> dispenser = new HashMap<>();
+    private Map<Denomination, Integer> wallet = new HashMap<>();
 
-    public Map<Money, Integer> withdraw(int amount){
+    public Map<Denomination, Integer> withdraw(int amount){
+            if(amount >= FIFTY_EURO.getValue()){
+                int quantity = amount / FIFTY_EURO.getValue();
+                if (quantity != 0) {
+                    wallet.put(FIFTY_EURO, quantity);
+                }
 
-
-            if(amount >= Money.FIFTY_EURO.getValue()){
-                int quantity = amount / Money.FIFTY_EURO.getValue();
-                dispenser.put(Money.FIFTY_EURO, quantity);
-                amount = amount - (quantity * Money.FIFTY_EURO.getValue());
+                amount = amount - (quantity * FIFTY_EURO.getValue());
             }
 
-            if(amount >= Money.TWENTY_EURO.getValue()){
-                int quantity = amount / Money.TWENTY_EURO.getValue();
-                dispenser.put(Money.TWENTY_EURO, quantity);
-                amount = amount - (quantity * Money.TWENTY_EURO.getValue());
+            if(amount >= TWENTY_EURO.getValue()){
+                int quantity = amount / TWENTY_EURO.getValue();
+                if (quantity != 0) {
+                    wallet.put(TWENTY_EURO, quantity);
+                }
+
+                amount = amount - (quantity * TWENTY_EURO.getValue());
             }
 
-            if(amount >= Money.TEN_EURO.getValue()){
-                int quantity = amount / Money.TEN_EURO.getValue();
-                dispenser.put(Money.TEN_EURO, quantity);
+            if(amount >= TEN_EURO.getValue()) {
+                int quantity = amount / TEN_EURO.getValue();
+                if (quantity != 0) {
+                    wallet.put(TEN_EURO, quantity);
+                }
             }
 
-            return dispenser;
+            return wallet;
     }
 }

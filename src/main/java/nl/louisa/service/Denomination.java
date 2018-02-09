@@ -1,12 +1,12 @@
 package nl.louisa.service;
 
-public enum Money {
+public enum Denomination {
 
-    TWENTY_EURO(20), TEN_EURO (10), FIFTY_EURO(50);
+    FIFTY_EURO(50), TWENTY_EURO(20), TEN_EURO (10);
 
     private int value;
 
-    Money(int value) {
+    Denomination(int value) {
         this.value = value;
     }
 
