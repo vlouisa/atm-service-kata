@@ -1,5 +1,7 @@
 package nl.louisa.service;
 
+import java.util.Arrays;
+
 public enum Denomination {
 
     FIFTY_EURO(50), TWENTY_EURO(20), TEN_EURO (10);
@@ -14,5 +16,14 @@ public enum Denomination {
         return value;
     }
 
+    public static int smallest(){
+      return  Arrays.asList(Denomination.values())
+                            .stream()
+                            .mapToInt(Denomination::getValue)
+                            .min()
+                            .getAsInt();
+
+
+    }
 
 }

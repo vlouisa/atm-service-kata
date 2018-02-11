@@ -24,6 +24,11 @@ public class ATMServiceShould {
         atmService = new ATMService();
     }
 
+    @Test(expected=IllegalArgumentException.class) public void
+    throw_exception_when_the_full_amount_is_not_available() {
+        atmService.withdraw(195);
+    }
+
 
     @Parameters(method="params")
     @Test public void
