@@ -18,10 +18,17 @@ import static org.hamcrest.core.Is.is;
 @RunWith(JUnitParamsRunner.class)
 public class ATMServiceShould {
     private ATMService atmService;
+    private Dispenser dispenser;
 
     @Before
     public void setUp() throws Exception {
-        atmService = new ATMService();
+        dispenser = Dispenser.create( new Dispenser(Denomination.FIFTY_EURO),
+                new Dispenser(Denomination.TWENTY_EURO),
+                new Dispenser(Denomination.TEN_EURO)
+        );
+
+
+        atmService = new ATMService(dispenser);
     }
 
     @Test(expected=IllegalArgumentException.class) public void
